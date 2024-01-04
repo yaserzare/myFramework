@@ -2,10 +2,12 @@
 
 require_once __DIR__."/vendor/autoload.php";
 
-//$app = new \App\Application();
+$app = new \Yaserzare\PocketCore\Application();
+$app->router->get('/articles',function (){
+    return 'articles page';
+});
+$app->router->get('/series',function (){
+    return 'series page';
+});
 
-//var_dump($app->test());
-
-$core = new \Yaserzare\PocketCore\Core();
-var_dump($core);
 
