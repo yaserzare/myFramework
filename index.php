@@ -6,8 +6,14 @@ $app = new \Yaserzare\PocketCore\Application();
 $app->router->get('/articles',function (){
     return 'articles page';
 });
+
 $app->router->get('/series',function (){
     return 'series page';
 });
 
+$app->router->get('/about-me',function (){
+    return 'about-me page';
+});
+
+$app->run();
 
