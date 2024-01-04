@@ -4,12 +4,40 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f77be0df132a27e16ba36f788a36c16b",
-    "packages": [],
+    "content-hash": "0cd1f9689e20a76dadbd82ba034d2295",
+    "packages": [
+        {
+            "name": "yaserzare/pocket-core",
+            "version": "dev-main",
+            "dist": {
+                "type": "path",
+                "url": "pocket",
+                "reference": "22e58b6c7e4809781af2141e1dbf36e91ab99a16"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Yaserzare\\PocketCore\\": "src/"
+                }
+            },
+            "authors": [
+                {
+                    "name": "yaserzare",
+                    "email": "info@yaserzare.ir"
+                }
+            ],
+            "description": "This is my framework core",
+            "transport-options": {
+                "relative": true
+            }
+        }
+    ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "yaserzare/pocket-core": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

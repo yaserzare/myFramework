@@ -1,5 +1,6 @@
 {
     "name": "yaserzare/my-framework",
+    "type": "project",
     "autoload": {
         "psr-4": {
             "App\\": "app/"
@@ -11,5 +12,13 @@
             "email": "info@yaserzare.ir"
         }
     ],
-    "require": {}
+    "require": {
+        "yaserzare/pocket-core": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "pocket"
+        }
+    ]
 }
