@@ -9,6 +9,13 @@ class Router
 
     ];
 
+    protected Request $request;
+
+    public function __construct()
+    {
+        $this->request = new Request();
+    }
+
     public function get(string $url, $callback)
     {
 
@@ -22,17 +29,10 @@ class Router
         $this->routesMap['post'][$url] = $callback;
     }
 
-    private function getCallbackFromDynamicRoute()
+    private function getCallbackFromDynamicRoute(): bool|array
     {
-        $method = strtolower($_SERVER['REQUEST_METHOD']);
-        $url = $_SERVER['REQUEST_URI'];
-
-        $position = strpos($url, '?');
-
-        if($position !== false)
-        {
-            $url = substr($url, 0, $position);
-        }
+        $method = $this->request->getMethod();
+        $url = $this->request->getUrl();
 
         $routes = $this->routesMap[$method];
 
@@ -50,11 +50,7 @@ class Router
 
 
 
-           $routeRegex = "@^" . preg_replace_callback(
-               '/\{\w+(:([^}]+))?}/',
-               fn($matches) => isset($matches[2]) ? "({$matches[2]})" : "([-\w]+)",
-               $route
-               ) . "$@";
+           $routeRegex = $this->convertRouteToRegex($route);
 
             if(preg_match_all($routeRegex, $url, $matches))
             {
@@ -77,8 +73,8 @@ class Router
 
     public function resolve()
     {
-        $method = strtolower($_SERVER['REQUEST_METHOD']);
-        $url = $_SERVER['REQUEST_URI'];
+        $method = $this->request->getMethod();
+        $url = $this->request->getUrl();
 
         $position = strpos($url, '?');
 
@@ -102,5 +98,19 @@ class Router
         }
 
         return call_user_func($callback, ...array_values($params));
+    }
+
+    /**
+     * @param string $route
+     * @return string
+     */
+
+    public function convertRouteToRegex(string $route): string
+    {
+        return "@^" . preg_replace_callback(
+                '/\{\w+(:([^}]+))?}/',
+                fn($matches) => isset($matches[2]) ? "({$matches[2]})" : "([-\w]+)",
+                $route
+            ) . "$@";
     }
 }
