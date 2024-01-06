@@ -36,7 +36,13 @@ class Router
                 $routeNames = $matches[1];
             }
 
-           $routeRegex = "@^" . preg_replace('/\{(\w+)(:[^}]+)?}/', '([-\w]+)', $route) . "$@";
+
+
+           $routeRegex = "@^" . preg_replace_callback(
+               '/\{\w+(:([^}]+))?}/',
+               fn($matches) => isset($matches[2]) ? "({$matches[2]})" : "([-\w]+)",
+               $route
+               ) . "$@";
 
             if(preg_match_all($routeRegex, $url, $matches))
             {
