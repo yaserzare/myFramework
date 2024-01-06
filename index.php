@@ -3,8 +3,8 @@
 require_once __DIR__."/vendor/autoload.php";
 
 $app = new \Yaserzare\PocketCore\Application();
-$app->router->get('/articles',function (){
-    return 'articles page';
+$app->router->get('/articles/{id}/edit/{articles}',function ($id, $slug){
+    return "articles $id $slug";
 });
 
 $app->router->get('/series',function (){
