@@ -2,12 +2,24 @@
 namespace Yaserzare\PocketCore;
 class Router
 {
-    private $routesMap = [];
+    private array $routesMap = [
+
+        'get' => [],
+        'post' => []
+
+    ];
 
     public function get(string $url, $callback)
     {
-        $this->routesMap["get"][$url] = $callback;
 
+        $this->routesMap['get'][$url] = $callback;
+
+    }
+
+    public function post(string $url, $callback)
+    {
+
+        $this->routesMap['post'][$url] = $callback;
     }
 
     private function getCallbackFromDynamicRoute()

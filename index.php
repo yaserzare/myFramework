@@ -4,6 +4,32 @@ require_once __DIR__."/vendor/autoload.php";
 
 $app = new \Yaserzare\PocketCore\Application();
 
+$app->router->get('/articles/create', function (){
+    return <<<'HTML'
+        <!doctype html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+                     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+                                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
+                     <title>Pocket Article Create</title>
+        </head>
+        <body>
+          <form action="/articles/create" method="post">
+          <input type="text" name="title" placeholder="enter article title ">
+          <button type="submit">create</button>
+          
+</form>
+        </body>
+        </html>
+HTML;
+
+});
+
+$app->router->post('/articles/create', function (){
+    var_dump($_POST);die;
+});
+
 $app->router->get('/articles/{id:\d+}',function ($id){
     return "articles $id";
 });
