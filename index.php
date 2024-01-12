@@ -1,10 +1,12 @@
 <?php
 
-require_once __DIR__."/vendor/autoload.php";
+use Yaserzare\PocketCore\Request;
+
+require_once __DIR__ . "/vendor/autoload.php";
 
 $app = new \Yaserzare\PocketCore\Application();
 
-$app->router->get('/articles/create', function (){
+$app->router->get('/articles/create', function () {
     return <<<'HTML'
         <!doctype html>
         <html lang="en">
@@ -15,7 +17,7 @@ $app->router->get('/articles/create', function (){
                      <title>Pocket Article Create</title>
         </head>
         <body>
-          <form action="/articles/create" method="post">
+          <form action="/articles/create?id=12" method="post">
           <input type="text" name="title" placeholder="enter article title ">
           <button type="submit">create</button>
           
@@ -26,23 +28,28 @@ HTML;
 
 });
 
-$app->router->post('/articles/create', function (){
-    var_dump($_POST);die;
+$app->router->post('/articles/create', function () {
+
+    $request = new Request();
+    var_dump($request->all());
+    return $request->query('id');
+
+
 });
 
-$app->router->get('/articles/{id:\d+}',function ($id){
+$app->router->get('/articles/{id:\d+}', function ($id) {
     return "articles $id";
 });
 
-$app->router->get('/articles/{id}/edit/{article}',function ($id, $slug){
+$app->router->get('/articles/{id}/edit/{article}', function ($id, $slug) {
     return "articles $id $slug";
 });
 
-$app->router->get('/series',function (){
+$app->router->get('/series', function () {
     return 'series page';
 });
 
-$app->router->get('/about-me',function (){
+$app->router->get('/about-me', function () {
     return 'about-me page';
 });
 
