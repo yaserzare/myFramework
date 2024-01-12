@@ -2,12 +2,14 @@
 namespace Yaserzare\PocketCore;
 class Router
 {
-    private array $routesMap = [
+   static private array $routesMap = [
 
         'get' => [],
         'post' => []
 
     ];
+
+    protected array $routerFiles = [];
 
     protected Request $request;
 
@@ -16,17 +18,23 @@ class Router
         $this->request = new Request();
     }
 
-    public function get(string $url, $callback)
+    static public function get(string $url, $callback): void
     {
 
-        $this->routesMap['get'][$url] = $callback;
+        self::$routesMap['get'][$url] = $callback;
 
     }
 
-    public function post(string $url, $callback)
+    static public function post(string $url, $callback): void
     {
 
-        $this->routesMap['post'][$url] = $callback;
+        self::$routesMap['post'][$url] = $callback;
+    }
+
+    public function setRouterFile(string $path): Router
+    {
+        $this->routerFiles[$path] = $path;
+        return $this;
     }
 
     private function getCallbackFromDynamicRoute(): bool|array
@@ -34,7 +42,7 @@ class Router
         $method = $this->request->getMethod();
         $url = $this->request->getUrl();
 
-        $routes = $this->routesMap[$method];
+        $routes = self::$routesMap[$method];
 
         foreach ($routes as $route => $callback)
         {
@@ -73,6 +81,11 @@ class Router
 
     public function resolve()
     {
+        foreach ($this->routerFiles as $file){
+            require_once $file;
+        }
+
+
         $method = $this->request->getMethod();
         $url = $this->request->getUrl();
 
@@ -83,7 +96,7 @@ class Router
             $url = substr($url, 0, $position);
         }
 
-        $callback = $this->routesMap[$method][$url] ?? false;
+        $callback = self::$routesMap[$method][$url] ?? false;
         $params = [];
         if(! $callback)
         {
