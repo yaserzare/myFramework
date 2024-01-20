@@ -1,5 +1,6 @@
 <?php
 namespace Yaserzare\PocketCore;
+
 class Router
 {
    static private array $routesMap = [
@@ -108,6 +109,13 @@ class Router
 
             $callback = $routeCallback[0];
             $params = $routeCallback[1];
+        }
+
+        if(is_array($callback))
+        {
+
+            $controllerMethod = new \ReflectionMethod($callback[0], $callback[1]);
+            return $controllerMethod->invoke(new $callback[0], ...$params);
         }
 
         return call_user_func($callback, ...array_values($params));
