@@ -13,7 +13,8 @@
         }
     ],
     "require": {
-        "yaserzare/pocket-core": "dev-main"
+        "yaserzare/pocket-core": "dev-main",
+        "rakit/validation": "^1.4"
     },
     "repositories": [
         {

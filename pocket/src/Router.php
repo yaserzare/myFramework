@@ -98,9 +98,11 @@ class Router
         }
 
         $callback = self::$routesMap[$method][$url] ?? false;
+
         $params = [];
         if(! $callback)
         {
+
             $routeCallback = $this->getCallbackFromDynamicRoute();
             if(! $routeCallback)
             {
@@ -113,6 +115,7 @@ class Router
 
         if(is_array($callback))
         {
+
             $controllerMethod = new \ReflectionMethod($callback[0], $callback[1]);
             $autoInjections = [];
             foreach($controllerMethod->getParameters() as $key=>$value)
