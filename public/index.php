@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "./../vendor/autoload.php";
 
-$app = new \Yaserzare\PocketCore\Application();
+$app = new \Yaserzare\PocketCore\Application(dirname(__DIR__));
 
 $app->router
     ->setRouterFile(__DIR__."/../routes/web.php")

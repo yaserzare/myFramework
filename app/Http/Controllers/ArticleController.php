@@ -17,28 +17,10 @@ class ArticleController extends Controller
 
     public function create()
     {
-
-        return <<<'HTML'
-        <!doctype html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-                     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-                                 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-                     <title>Pocket Article Create</title>
-        </head>
-        <body>
-          <form action="/articles/create?id=12" method="post">
-          <input type="text" name="title" placeholder="enter article title ">
-          <button type="submit">create</button>
-          
-</form>
-        </body>
-        </html>
-HTML;
-
-
-
+        return $this->render('articles.create', [
+            'title' => "this is test",
+            'code' => "c#"
+        ]);
     }
     public function store(Request $request)
     {

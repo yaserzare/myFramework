@@ -14,7 +14,8 @@
     ],
     "require": {
         "yaserzare/pocket-core": "dev-main",
-        "rakit/validation": "^1.4"
+        "rakit/validation": "^1.4",
+        "jenssegers/blade": "^2.0"
     },
     "repositories": [
         {

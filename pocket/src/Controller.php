@@ -16,4 +16,16 @@ class Controller
 
         return $validation;
     }
+
+    protected function render(string $view, array $data = []): bool|string
+    {
+        foreach ($data as $key => $value)
+        {
+            $$key = $value;
+        }
+
+        ob_start(); //buffer
+        include_once Application::$ROOT_DIR."/resources/views/$view.php";
+        return ob_get_clean(); //clean buffer
+    }
 }
