@@ -19,7 +19,7 @@ class ArticleController extends Controller
     {
         return $this->render('articles.create', [
             'title' => "this is test",
-            'code' => "c#"
+            'auth' => true
         ]);
     }
     public function store(Request $request)

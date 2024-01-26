@@ -1,6 +1,8 @@
 <?php
 namespace Yaserzare\PocketCore;
 
+use Yaserzare\PocketCore\View;
+
 class Router
 {
    static private array $routesMap = [
@@ -30,6 +32,12 @@ class Router
     {
 
         self::$routesMap['post'][$url] = $callback;
+    }
+
+    static public function view(string $url, $callback): void
+    {
+
+        self::$routesMap['get'][$url] = $callback;
     }
 
     public function setRouterFile(string $path): Router
@@ -111,6 +119,11 @@ class Router
 
             $callback = $routeCallback[0];
             $params = $routeCallback[1];
+        }
+
+        if(is_string($callback))
+        {
+          return   (new View)->render($callback);
         }
 
         if(is_array($callback))

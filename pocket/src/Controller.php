@@ -3,6 +3,7 @@ namespace Yaserzare\PocketCore;
 
 use Rakit\Validation\Validation;
 use Rakit\Validation\Validator;
+use Yaserzare\PocketCore\View;
 
 class Controller
 {
@@ -17,15 +18,8 @@ class Controller
         return $validation;
     }
 
-    protected function render(string $view, array $data = []): bool|string
+    protected function render(string $view, array $data = [])
     {
-        foreach ($data as $key => $value)
-        {
-            $$key = $value;
-        }
-
-        ob_start(); //buffer
-        include_once Application::$ROOT_DIR."/resources/views/$view.php";
-        return ob_get_clean(); //clean buffer
+        return (new View)->render($view, $data);
     }
 }

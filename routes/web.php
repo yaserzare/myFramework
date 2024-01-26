@@ -16,3 +16,6 @@ Router::get('/articles/{id}/edit/{article}', function ($id, $slug) {
 Router::get('/articles/{id:\d+}', function ($id) {
     return "articles $id";
 });
+
+//Router::get('/about', 'about');
+Router::view('/about', 'about');
