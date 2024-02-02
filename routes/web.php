@@ -19,3 +19,5 @@ Router::get('/articles/{id:\d+}', function ($id) {
 
 //Router::get('/about', 'about');
 Router::view('/about', 'about');
+
+Router::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
