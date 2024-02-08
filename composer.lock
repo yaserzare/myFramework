@@ -1726,13 +1726,16 @@
             "dist": {
                 "type": "path",
                 "url": "pocket",
-                "reference": "22e58b6c7e4809781af2141e1dbf36e91ab99a16"
+                "reference": "e84dd5d1df21fccf0b7122975fe37277fc60d858"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Yaserzare\\PocketCore\\": "src/"
-                }
+                },
+                "files": [
+                    "./src/helpers.php"
+                ]
             },
             "authors": [
                 {

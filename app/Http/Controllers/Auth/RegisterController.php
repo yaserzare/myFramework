@@ -14,9 +14,9 @@ class RegisterController extends Controller
         return $this->render("auth.register");
     }
 
-    public function register(Request $request )
+    public function register()
     {
-        var_dump($request->all());die;
+        dd(request()->all());
     }
 }
 

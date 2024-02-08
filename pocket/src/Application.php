@@ -9,6 +9,7 @@ class Application
     public static $ROOT_DIR;
     public Database $db;
     public static $app;
+    public Request $request;
 
     public function __construct(string $root_dir)
     {
@@ -16,6 +17,7 @@ class Application
         self::$app = $this;
         $this->router = new Router();
         $this->db = new Database();
+        $this->request = new Request();
     }
 
     public function run()
