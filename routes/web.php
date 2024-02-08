@@ -1,7 +1,12 @@
 <?php
+
+use App\Http\Controllers\Auth\RegisterController;
 use Yaserzare\PocketCore\Request;
 use Yaserzare\PocketCore\Router;
 use App\Http\Controllers\ArticleController;
+
+Router::get('/auth/register', [RegisterController::class, 'registerView']);
+Router::post('/auth/register', [RegisterController::class, 'register']);
 
 Router::get('/articles/create', [ArticleController::class, 'create']);
 
