@@ -16,7 +16,21 @@ class RegisterController extends Controller
 
     public function register()
     {
-        dd(request()->all());
+        $validation = $this->validate(
+            request()->all(),
+            [
+                'name'=>'required|min:3|max:255',
+                'email'=>'required|email|max:255',
+                'password'=>'required|min:8',
+                'confirm_password'=>'required|same:password',
+
+            ]
+        );
+
+        if($validation->fails())
+        {
+            return redirect('/auth/register');
+        }
     }
 }
 
