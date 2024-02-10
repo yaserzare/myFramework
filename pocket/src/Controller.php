@@ -17,7 +17,9 @@ class Controller
 
         if($validation->fails())
         {
-            response()->withErrors($validation->errors());
+            response()
+                ->withErrors($validation->errors())
+                ->withInputs();
         }
 
         return $validation;
@@ -25,6 +27,6 @@ class Controller
 
     protected function render(string $view, array $data = [])
     {
-        return (new View)->render($view, $data);
+        return app()->view->render($view, $data);
     }
 }

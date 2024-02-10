@@ -12,7 +12,7 @@ class Application
     public Request $request;
     public Response $response;
     public Session $session;
-
+    public View $view;
     public function __construct(string $root_dir)
     {
         self::$ROOT_DIR = $root_dir;
@@ -22,6 +22,7 @@ class Application
         $this->request = new Request;
         $this->response = new Response;
         $this->session = new Session;
+        $this->view = new View;
     }
 
     public function run()

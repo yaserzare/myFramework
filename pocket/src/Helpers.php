@@ -56,3 +56,5 @@ if(!function_exists('session'))
         return app()->session;
     }
 }
+
+

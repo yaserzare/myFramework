@@ -34,7 +34,6 @@ class RegisterController extends Controller
         if($validation->fails())
         {
             return redirect('/auth/register');
-
         }
     }
 }

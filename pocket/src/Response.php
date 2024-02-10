@@ -17,4 +17,10 @@ class Response
         session()->flash('errors', $errors);
         return $this;
     }
+
+    public function withInputs(array $inputs = null): self
+    {
+        session()->flash('old_inputs', !is_null($inputs) ? $inputs : request()->all());
+        return $this;
+    }
 }
