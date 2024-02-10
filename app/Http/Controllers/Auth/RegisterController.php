@@ -11,6 +11,10 @@ class RegisterController extends Controller
 {
     public function registerView()
     {
+//        session()->set('name', 'yaser');
+//      dd(session()->get('name'));
+//        session()->remove('name');
+
         return $this->render("auth.register");
     }
 

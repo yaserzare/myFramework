@@ -11,6 +11,7 @@ class Application
     public static $app;
     public Request $request;
     public Response $response;
+    public Session $session;
 
     public function __construct(string $root_dir)
     {
@@ -20,6 +21,7 @@ class Application
         $this->db = new Database;
         $this->request = new Request;
         $this->response = new Response;
+        $this->session = new Session;
     }
 
     public function run()

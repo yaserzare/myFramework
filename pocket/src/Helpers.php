@@ -3,6 +3,7 @@
 use Yaserzare\PocketCore\Application;
 use Yaserzare\PocketCore\Request;
 use Yaserzare\PocketCore\Response;
+use Yaserzare\PocketCore\Session;
 
 if(!function_exists('dd'))
 {
@@ -45,5 +46,13 @@ if(!function_exists('redirect'))
     function redirect(string $url): Response
     {
         return response()->redirect($url);
+    }
+}
+
+if(!function_exists('session'))
+{
+    function session(): Session
+    {
+        return app()->session;
     }
 }
