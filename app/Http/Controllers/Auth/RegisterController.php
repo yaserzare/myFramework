@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 
 
+use Rakit\Validation\ErrorBag;
 use Yaserzare\PocketCore\Controller;
 use Yaserzare\PocketCore\Request;
 
@@ -14,9 +15,6 @@ class RegisterController extends Controller
 //      session()->set('name', 'yaser');
 //      dd(session()->get('name'));
 //      session()->remove('name');
-        var_dump(session()->flash('errors'));
-
-
         return $this->render("auth.register");
     }
 
@@ -35,8 +33,8 @@ class RegisterController extends Controller
 
         if($validation->fails())
         {
-            session()->flash('errors', $validation->errors());
             return redirect('/auth/register');
+
         }
     }
 }

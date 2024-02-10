@@ -5,18 +5,30 @@
         <div>
             <label for="name">Name: </label>
             <input type="text" name="name">
+            <?php if($errors->has('name')): ?>
+            <span><?php echo e($errors->first('name')); ?></span>
+            <?php endif; ?>
         </div>
         <div>
             <label for="email">Email: </label>
             <input type="text" name="email">
+            <?php if($errors->has('email')): ?>
+                <span><?php echo e($errors->first('email')); ?></span>
+            <?php endif; ?>
         </div>
         <div>
             <label for="password">Password: </label>
             <input type="text" name="password">
+            <?php if($errors->has('password')): ?>
+                <span><?php echo e($errors->first('password')); ?></span>
+            <?php endif; ?>
         </div>
         <div>
             <label for="confirm_password">Confirm Password: </label>
             <input type="text" name="confirm_password">
+            <?php if($errors->has('confirm_password')): ?>
+                <span><?php echo e($errors->first('confirm_password')); ?></span>
+            <?php endif; ?>
         </div>
         <button type="submit">Register</button>
     </form>
