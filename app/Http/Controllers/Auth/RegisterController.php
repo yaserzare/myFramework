@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 
 
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Rakit\Validation\ErrorBag;
 use Yaserzare\PocketCore\Controller;
 use Yaserzare\PocketCore\Request;
@@ -24,7 +26,7 @@ class RegisterController extends Controller
             request()->all(),
             [
                 'name'=>'required|min:3|max:255',
-                'email'=>'required|email|max:255',
+                'email'=>'required|email|max:255|unique:users,email',
                 'password'=>'required|min:8',
                 'confirm_password'=>'required|same:password',
 
@@ -35,6 +37,16 @@ class RegisterController extends Controller
         {
             return redirect('/auth/register');
         }
+
+        $userData = $validation->getValidatedData();
+        unset($userData['confirm_password']);
+        (new User())->create([
+            ...$userData,
+            'password' => password_hash($userData['password'], PASSWORD_BCRYPT)
+        ]);
+
+        return redirect('/auth/login');
+
     }
 }
 

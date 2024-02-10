@@ -135,4 +135,11 @@ class Model extends Database
     {
        return $this->where($field, $value)->first();
     }
+
+    public function from(string $table): self
+    {
+        $this->table = $table;
+        return $this;
+
+    }
 }
