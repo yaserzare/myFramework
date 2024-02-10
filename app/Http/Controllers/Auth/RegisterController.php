@@ -11,9 +11,11 @@ class RegisterController extends Controller
 {
     public function registerView()
     {
-//        session()->set('name', 'yaser');
+//      session()->set('name', 'yaser');
 //      dd(session()->get('name'));
-//        session()->remove('name');
+//      session()->remove('name');
+        var_dump(session()->flash('errors'));
+
 
         return $this->render("auth.register");
     }
@@ -33,6 +35,7 @@ class RegisterController extends Controller
 
         if($validation->fails())
         {
+            session()->flash('errors', $validation->errors());
             return redirect('/auth/register');
         }
     }
