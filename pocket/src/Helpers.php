@@ -1,6 +1,7 @@
 <?php
 
 use Yaserzare\PocketCore\Application;
+use Yaserzare\PocketCore\Auth;
 use Yaserzare\PocketCore\Request;
 use Yaserzare\PocketCore\Response;
 use Yaserzare\PocketCore\Session;
@@ -57,4 +58,11 @@ if(!function_exists('session'))
     }
 }
 
+if(!function_exists('auth'))
+{
+    function auth(): Auth
+    {
+        return new Auth;
+    }
+}
 

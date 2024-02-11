@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Rakit\Validation\ErrorBag;
+use Yaserzare\PocketCore\Auth;
 use Yaserzare\PocketCore\Controller;
 use Yaserzare\PocketCore\Request;
 
@@ -14,6 +15,8 @@ class RegisterController extends Controller
 {
     public function registerView()
     {
+        if(auth()->check())
+            return redirect('/user');
 //      session()->set('name', 'yaser');
 //      dd(session()->get('name'));
 //      session()->remove('name');
@@ -22,6 +25,9 @@ class RegisterController extends Controller
 
     public function register()
     {
+        if(auth()->check())
+            return redirect('/user');
+
         $validation = $this->validate(
             request()->all(),
             [
