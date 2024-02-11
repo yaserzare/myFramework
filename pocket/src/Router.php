@@ -1,6 +1,7 @@
 <?php
 namespace Yaserzare\PocketCore;
 
+use Yaserzare\PocketCore\Exceptions\NotFoundException;
 use Yaserzare\PocketCore\View;
 
 class Router
@@ -114,7 +115,7 @@ class Router
             $routeCallback = $this->getCallbackFromDynamicRoute();
             if(! $routeCallback)
             {
-                throw new \Exception('Not found');
+                throw new NotFoundException('Not found');
             }
 
             $callback = $routeCallback[0];

@@ -27,7 +27,24 @@ class Application
 
     public function run()
     {
-       echo $this->router->resolve();
+        try {
+            echo $this->router->resolve();
+        }
+        catch (\Exception $e)
+        {
+            if($e->getCode())
+            {
+
+                echo $this->view->render("errors.{$e->getCode()}", [
+                    'error' => $e
+                ]);
+                return;
+            }
+
+            echo $this->view->render("errors.500", [
+                'error' => $e
+            ]);
+        }
     }
 
 }
